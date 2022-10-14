@@ -55,12 +55,13 @@
                                 <td>{{ $data->last_name }}</td>
                                 <td>{{ $data->nickname }}</td>
                                 <td>
-                                    @php
+                                    {{ $data->dob }}
+                                    {{-- @php
                                         $dateOfBirth = $data->dob;
                                         $today = date('Y-m-d');
                                         $diff = date_diff(date_create($dateOfBirth), date_create($today));
                                         echo $diff->format('%y');
-                                    @endphp
+                                    @endphp --}}
                                 </td>
                                 <td>{{ $data->civil_status }}</td>
                                 <td>
