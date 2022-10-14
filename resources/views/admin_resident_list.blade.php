@@ -106,7 +106,11 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
-                                                                        @if ($data->father != null)
+                                                                        @if ($data->father == null)
+                                                                            none
+                                                                        @elseif($data->father == 'N/A')
+                                                                            None
+                                                                        @else
                                                                             <!-- Button trigger modal -->
                                                                             <button type="button"
                                                                                 class="btn btn-link btn-sm"
@@ -222,12 +226,14 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                        @else
-                                                                            None
                                                                         @endif
                                                                     </td>
                                                                     <td>
-                                                                        @if ($data->father != null)
+                                                                        @if ($data->mother == null)
+                                                                            none
+                                                                        @elseif($data->mother == 'N/A')
+                                                                            None
+                                                                        @else
                                                                             <!-- Button trigger modal -->
                                                                             <button type="button"
                                                                                 class="btn btn-link btn-sm"
@@ -343,10 +349,9 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                        @else
-                                                                            None
                                                                         @endif
                                                                     </td>
+
                                                                     <td>{{ $data->place_of_birth }}</td>
                                                                     <td>{{ $data->sex }}</td>
                                                                     <td>{{ $data->nationality }}</td>
