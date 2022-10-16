@@ -56,7 +56,7 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header" style="font-weight: bold;">EDAD KADA ZONE TRIAL VERSION</div>
+                <div class="card-header" style="font-weight: bold;">EDAD</div>
                 <div class="card-body">
                     <canvas id="resident_age_chart" height="100"></canvas>
                 </div>
@@ -190,6 +190,50 @@
                     ],
                     borderWidth: 1,
                     data: pwd_per_zone_total
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: false,
+                        text: "Agent Performance For the Month of ",
+                    }
+                }
+            }
+        });
+
+
+        const resident_age_bracket_label = {!! json_encode($resident_age_bracket_label) !!};
+        const resident_age_bracket_total = {!! json_encode($resident_age_bracket_total) !!};
+
+        new Chart("resident_age_chart", {
+            type: "bar",
+            data: {
+                labels: resident_age_bracket_label,
+                datasets: [{
+                    backgroundColor: [
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(153, 102, 255)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(201, 203, 207)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                    ],
+                    borderWidth: 1,
+                    data: resident_age_bracket_total
                 }]
             },
             options: {

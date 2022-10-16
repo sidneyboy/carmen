@@ -228,6 +228,7 @@ class Barangay_controller extends Controller
             ->get()
             ->toArray();
 
+
         if (count($resident_gender) != 0) {
             foreach ($resident_gender as $key => $row) {
                 $resident_gender_label[] = $row->sex;
@@ -237,20 +238,6 @@ class Barangay_controller extends Controller
             $resident_gender_label[] = 0;
             $resident_gender_total[] = 0;
         }
-
-        // $pwd_per_zone = Residents::selectRaw('zone, SUM(IF(sex = "Male", 1, 0)) as males, SUM(IF(sex = "Female", 1, 0)) as females, SUM(IF(sex = "LGBT-Q", 1, 0)) as lgbt')
-        //     ->groupBy('zone')
-        //     ->get();
-
-        // if (count($pwd_per_zone) != 0) {
-        //     foreach ($pwd_per_zone as $key => $row) {
-        //         $pwd_per_zone_label[] = $row->zone;
-        //         $pwd_per_zone_total[] = $row->total;
-        //     }
-        // } else {
-        //     $pwd_per_zone_label[] = 0;
-        //     $pwd_per_zone_total[] = 0;
-        // }
 
         $pwd_per_zone = Residents::selectRaw('zone, pwd, COUNT(*) as total')
             ->where('pwd', 'Yes')
@@ -268,7 +255,30 @@ class Barangay_controller extends Controller
             $pwd_per_zone_total[] = 0;
         }
 
-     
+
+        // return $resident_gender = DB::table('residents')
+        //    ->select('SUM(CASE WHEN dob < 18 THEN 1 ELSE 0 END) AS [Under 18]')
+        //    ->select('SUM(CASE WHEN dob BETWEEN 18 AND 24 THEN 1 ELSE 0 END) AS [18-24]')
+        //    ->select('SUM(CASE WHEN dob BETWEEN 25 AND 34 THEN 1 ELSE 0 END) AS [25-34]')
+        //    ->get();
+
+
+       $resident_age_bracket = DB::table('residents')
+            ->select('dob', DB::raw('count(*) as total'))
+            ->groupBy('dob')
+            ->get()
+            ->toArray();
+
+        if (count($resident_age_bracket) != 0) {
+            foreach ($resident_age_bracket as $key => $row) {
+                $resident_age_bracket_label[] = $row->dob;
+                $resident_age_bracket_total[] = $row->total;
+            }
+        } else {
+            $resident_age_bracket_label[] = 0;
+            $resident_age_bracket_total[] = 0;
+        }
+
 
 
         return view('admin_resident_analytics', [
@@ -279,6 +289,8 @@ class Barangay_controller extends Controller
             'resident_gender_total' => $resident_gender_total,
             'pwd_per_zone_label' => $pwd_per_zone_label,
             'pwd_per_zone_total' => $pwd_per_zone_total,
+            'resident_age_bracket_label' => $resident_age_bracket_label,
+            'resident_age_bracket_total' => $resident_age_bracket_total,
         ]);
     }
 
