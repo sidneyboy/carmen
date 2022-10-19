@@ -50,66 +50,6 @@
                     </div>
                 </div>
                 <br />
-                {{-- <h2><span style="color:black;">House Hold Information</span></h2>
-                <div class="row">
-                    <div class="col-md-4">
-                        <label>Family Name</label>
-                        <input type="text" class="form-control rounded-0" name="family_name" required>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Zone</label>
-                        <select name="zone" class="form-control rounded-0">
-                            <option value="" default>Select</option>
-                            <option value="Zone 1">Zone 1</option>
-                            <option value="Zone 2">Zone 2</option>
-                            <option value="Zone 3">Zone 3</option>
-                            <option value="Zone 4">Zone 4</option>
-                            <option value="Zone 5">Zone 5</option>
-                            <option value="Zone 6">Zone 6</option>
-                            <option value="Zone 7">Zone 7</option>
-                            <option value="Zone 8">Zone 8</option>
-                            <option value="Zone 9">Zone 9</option>
-                            <option value="Zone 10">Zone 10</option>
-                            <option value="Zone 11">Zone 11</option>
-                            <option value="Zone 12">Zone 12</option>
-                            <option value="Zone 13">Zone 13</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Number of Family Members</label>
-                        <input type="number" class="form-control rounded-0" required id="number_of_childrens"
-                            name="number_of_childrens">
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>Ethic Origin</label>
-                        <select name="ethnic_origin" id="ethnic_origin" class="form-control rounded-0" required>
-                            <option value="" default>Select</option>
-                            <option value="Cebuano">Cebuano</option>
-                            <option value="Ilocano">Ilocano</option>
-                            <option value="Boholano">Boholano</option>
-                            <option value="Ilongo">Ilongo</option>
-                            <option value="Others">Others</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6" style="display: none" id="show_other_ethnic_if_trigger">
-                        <label>Other Ethnic Affiliation</label>
-                        <input type="text" class="form-control rounded-0" placeholder="Indicate here!" id="other_ethnic_affiliation" name="other_ethnic_affiliation">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>Current Address</label>
-                        <input type="text" class="form-control rounded-0" required name="current_address">
-                    </div>
-                    <div class="col-md-6">
-                        <label>Permanent Address</label>
-                        <input type="text" class="form-control rounded-0" required name="permanent_address">
-                    </div>
-                </div>
-                <br /> --}}
                 <div class="row">
                     <div class="col-md-3">
                         <label style="font-weight: bold;">Personal Information</label>
@@ -155,7 +95,7 @@
                         </select>
                     </div>
                     <div class="col-md-6">
-                       
+
                         <div id="show_father_image"></div>
                     </div>
                 </div>
@@ -174,7 +114,7 @@
                         </select>
                     </div>
                     <div class="col-md-6">
-                      
+
                         <div id="show_mother_image"></div>
                     </div>
                 </div>
@@ -272,10 +212,19 @@
                     </div>
                     <div class="col-md-3">
                         <label>Relationship to household head</label>
-                        <input type="text" name="relationship_to_household_head" class="form-control rounded-0" required>
+                        <input type="text" name="relationship_to_household_head" class="form-control rounded-0"
+                            required>
                     </div>
                 </div>
                 <div id="show_personnal_information"></div>
+
+
+
+             
+
+
+
+
             </div>
             <div class="card-footer">
                 <button class="btn btn-sm float-right btn-primary" type="submit"

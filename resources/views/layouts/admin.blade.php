@@ -63,7 +63,7 @@
     </style>
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="getLocation()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -281,120 +281,127 @@
             }
         });
 
-        $(document).ready(function() {
-            $('#example').DataTable({
-                // dom: 'Bfrtip',
-                // buttons: [
-                //     'excel',
-                // ]
-            });
-        });
+
 
         $(document).ready(function() {
+            $('#example').DataTable({});
+
+
             $('.js-example-basic-single').select2();
-        });
 
-        $("#proceed").click(function() {
-            var complainant = $('#complainant').val();
-            $.post({
-                type: "POST",
-                url: "/lupon_generate_respondent",
-                data: 'complainant=' + complainant,
-                success: function(data) {
-                    console.log(data);
-                    $('#generate_respondent').html(data);
-                },
-                error: function(error) {
-                    console.log(error);
+
+            $("#proceed").click(function() {
+                var complainant = $('#complainant').val();
+                $.post({
+                    type: "POST",
+                    url: "/lupon_generate_respondent",
+                    data: 'complainant=' + complainant,
+                    success: function(data) {
+                        console.log(data);
+                        $('#generate_respondent').html(data);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+
+            $("#family_name").keyup(function() {
+                $('#father_last_name').val($('#family_name').val());
+            });
+
+            $("#pwd").change(function() {
+                if ($(this).val() == 'Yes') {
+                    $('#show_trigger').show();
+                } else {
+                    $('#show_trigger').hide();
                 }
             });
-        });
 
-        $("#family_name").keyup(function() {
-            $('#father_last_name').val($('#family_name').val());
-        });
-
-        $("#pwd").change(function() {
-            if ($(this).val() == 'Yes') {
-                $('#show_trigger').show();
-            } else {
-                $('#show_trigger').hide();
-            }
-        });
-
-        $("#mother_pwd").change(function() {
-            if ($(this).val() == 'Yes') {
-                $('#mother_show_trigger').show();
-            } else {
-                $('#mother_show_trigger').hide();
-            }
-        });
-
-        $("#ethnic_origin").click(function() {
-            if ($(this).val() == 'Others') {
-                $('#show_other_ethnic_if_trigger').show();
-            } else {
-                $('#show_other_ethnic_if_trigger').hide();
-            }
-        });
-
-        $("#registration_proceed").click(function() {
-            var number_of_childrens = $('#number_of_childrens').val();
-            $.post({
-                type: "POST",
-                url: "/admin_registration_residents_generate_number_of_childrens",
-                data: 'number_of_childrens=' + number_of_childrens,
-                success: function(data) {
-                    console.log(data);
-                    $('#show_personnal_information').html(data);
-                },
-                error: function(error) {
-                    console.log(error);
+            $("#mother_pwd").change(function() {
+                if ($(this).val() == 'Yes') {
+                    $('#mother_show_trigger').show();
+                } else {
+                    $('#mother_show_trigger').hide();
                 }
             });
-        });
 
-        imgInp.onchange = evt => {
-            const [file] = imgInp.files
-            if (file) {
-                blah.src = URL.createObjectURL(file)
+            $("#ethnic_origin").click(function() {
+                if ($(this).val() == 'Others') {
+                    $('#show_other_ethnic_if_trigger').show();
+                } else {
+                    $('#show_other_ethnic_if_trigger').hide();
+                }
+            });
+
+            $("#registration_proceed").click(function() {
+                var number_of_childrens = $('#number_of_childrens').val();
+                $.post({
+                    type: "POST",
+                    url: "/admin_registration_residents_generate_number_of_childrens",
+                    data: 'number_of_childrens=' + number_of_childrens,
+                    success: function(data) {
+                        console.log(data);
+                        $('#show_personnal_information').html(data);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+            imgInp.onchange = evt => {
+                const [file] = imgInp.files
+                if (file) {
+                    blah.src = URL.createObjectURL(file)
+                }
             }
-        }
 
-        $("#father").change(function() {
-            var father_id = $('#father').val();
-            $.post({
-                type: "POST",
-                url: "/admin_search_father",
-                data: 'father_id=' + father_id,
-                success: function(data) {
-                    console.log(data);
-                    $('#show_father_image').html(data);
-                },
-                error: function(error) {
-                    console.log(error);
-                }
+            $("#father").change(function() {
+                var father_id = $('#father').val();
+                $.post({
+                    type: "POST",
+                    url: "/admin_search_father",
+                    data: 'father_id=' + father_id,
+                    success: function(data) {
+                        console.log(data);
+                        $('#show_father_image').html(data);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
             });
+
+            $("#mother").change(function() {
+                var mother_id = $('#mother').val();
+                $.post({
+                    type: "POST",
+                    url: "/admin_search_mother",
+                    data: 'mother_id=' + mother_id,
+                    success: function(data) {
+                        console.log(data);
+                        $('#show_mother_image').html(data);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+
         });
 
-        $("#mother").change(function() {
-            var mother_id = $('#mother').val();
-            $.post({
-                type: "POST",
-                url: "/admin_search_mother",
-                data: 'mother_id=' + mother_id,
-                success: function(data) {
-                    console.log(data);
-                    $('#show_mother_image').html(data);
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
-        });
+        // $(document).ready(function() {
+
+        // });
+    </script>
 
 
 
+
+    <script type="text/javascript">
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition);
@@ -406,193 +413,188 @@
         function showPosition(position) {
             $('#latitude').val(position.coords.latitude);
             $('#longitude').val(position.coords.longitude);
-            alert(position.coords.longitude);
-        }
-    </script>
 
-
-
-
-    <script type="text/javascript">
-        var marker_image = $('#marker_image').val();
-        var view = new ol.View({
-            projection: 'EPSG:4326',
-            center: [124.64968373253942, 8.483439232308356],
-            zoom: 13,
-            maxZoom: 23,
-        })
-
-        var OSM = new ol.layer.Tile({
-            title: 'OSM',
-            type: 'base',
-            visible: true,
-            source: new ol.source.OSM()
-        });
-
-        var satellite = new ol.layer.Tile({
-            title: 'satellite',
-            type: 'base',
-            visible: true,
-            source: new ol.source.XYZ({
-                attributions: ['Powered by Esri',
-                    'Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community'
-                ],
-                attributionsCollapsible: true,
-                url: 'http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}',
+            var marker_image = $('#marker_image').val();
+            var view = new ol.View({
+                projection: 'EPSG:4326',
+                center: [position.coords.longitude, position.coords.latitude],
+                zoom: 18,
                 maxZoom: 23,
-                crossOrigin: "Anonymous"
             })
-        });
 
-        var base_maps = new ol.layer.Group({
-            title: 'Base Maps',
-            layers: [satellite]
-        })
+            var OSM = new ol.layer.Tile({
+                title: 'OSM',
+                type: 'base',
+                visible: true,
+                source: new ol.source.OSM()
+            });
 
-        var map = new ol.Map({
-            target: 'map',
-            view: view
-        })
-
-        map.addLayer(base_maps);
-
-        var marker_image = $('#marker_image').val();
-
-        var Style = new ol.style.Style({
-            image: new ol.style.Icon({
-                anchor: [0.5, 46],
-                anchorXUnits: 'fraction',
-                anchorYUnits: 'pixels',
-                src: marker_image,
-            }),
-        })
-
-        var checker = checker;
-
-        map.on('click', function(e) {
-            if (checker > 0) {
-                console.log('cannot');
-            } else {
-                var point = map.getCoordinateFromPixel(e.pixel)
-                console.log(e.coordinate);
-                $('#longitude').val(e.coordinate[0]);
-                $('#latitude').val(e.coordinate[1]);
-
-
-                var marker = new ol.Feature({
-                    geometry: new ol.geom.Point([e.coordinate[0], e.coordinate[1]]),
-                    type: 'hospital',
-                    name: 'test',
-                });
-
-                var vectorLayer = new ol.layer.Vector({
-                    title: 'REPORT',
-                    source: new ol.source.Vector({
-                        features: [marker]
-                    }),
-                    style: Style
-                });
-                map.addLayer(vectorLayer);
-
-
-
-                function utmzone_from_lon(lon_deg) {
-                    //get utm-zone from longitude degrees
-                    return parseInt(((lon_deg + 180) / 6) % 60) + 1;
-                }
-
-                function proj4_setdef(lon_deg) {
-                    //get UTM projection definition from longitude
-                    const utm_zone = utmzone_from_lon(lon_deg);
-                    const zdef = `+proj=utm +zone=${utm_zone} +datum=WGS84 +units=m +no_defs`;
-                    return zdef;
-                }
-
-                // computation test
-                let lon_input = e.coordinate[0];
-                let lat_input = e.coordinate[1];
-                console.log("Input (long,lat):", lon_input, lat_input);
-                const azone = utmzone_from_lon(lon_input);
-                console.log(`UTM zone from longitude: ${azone}`);
-                console.log("AUTO projection definition:", proj4_setdef(lon_input));
-
-                // define proj4_defs for easy uses
-                // "EPSG:4326" for long/lat degrees, no projection
-                // "EPSG:AUTO" for UTM 'auto zone' projection
-                proj4.defs([
-                    [
-                        "EPSG:4326",
-                        "+title=WGS 84 (long/lat) +proj=longlat +ellps=WGS84 +datum=WGS84 +units=degrees"
+            var satellite = new ol.layer.Tile({
+                title: 'satellite',
+                type: 'base',
+                visible: true,
+                source: new ol.source.XYZ({
+                    attributions: ['Powered by Esri',
+                        'Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community'
                     ],
-                    ["EPSG:AUTO", proj4_setdef(lon_input)]
-                ]);
+                    attributionsCollapsible: true,
+                    url: 'http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}',
+                    maxZoom: 23,
+                    crossOrigin: "Anonymous"
+                })
+            });
 
-                // usage:
-                // conversion from (long/lat) to UTM (E/N)
-                const en_m = proj4("EPSG:4326", "EPSG:AUTO", [lon_input, lat_input]);
-                const e4digits = en_m[0].toFixed(4); //easting
-                const n4digits = en_m[1].toFixed(4); //northing
-                console.log(`Zone ${azone}, (E,N) m: ${e4digits}, ${n4digits}`);
+            var base_maps = new ol.layer.Group({
+                title: 'Base Maps',
+                layers: [satellite]
+            })
 
+            var map = new ol.Map({
+                target: 'map',
+                view: view
+            })
 
-                $('#x_axis').val(e4digits);
-                $('#y_axis').val(n4digits);
+            map.addLayer(base_maps);
 
-                // inversion from (E,N) to (long,lat)
-                const lonlat_chk = proj4("EPSG:AUTO", "EPSG:4326", en_m);
-                console.log("Inverse check:", lonlat_chk);
+            var marker_image = $('#marker_image').val();
 
-                checker = 1;
-            }
-        });
+            var Style = new ol.style.Style({
+                image: new ol.style.Icon({
+                    anchor: [0.5, 46],
+                    anchorXUnits: 'fraction',
+                    anchorYUnits: 'pixels',
+                    src: marker_image,
+                }),
+            })
 
+            var checker = checker;
 
-        function removeMarker() {
-            location.reload();
-        }
-
-        document.getElementById('export-png').addEventListener('click', function() {
-            map.once('rendercomplete', function() {
-                var mapCanvas = document.createElement('canvas');
-                var size = map.getSize();
-                mapCanvas.width = size[0];
-                mapCanvas.height = size[1];
-                var mapContext = mapCanvas.getContext('2d');
-                Array.prototype.forEach.call(
-                    document.querySelectorAll('.ol-layer canvas'),
-                    function(canvas) {
-                        if (canvas.width > 0) {
-                            var opacity = canvas.parentNode.style.opacity;
-                            mapContext.globalAlpha = opacity === '' ? 1 : Number(opacity);
-                            var transform = canvas.style.transform;
-                            // Get the transform parameters from the style's transform matrix
-                            var matrix = transform
-                                .match(/^matrix\(([^\(]*)\)$/)[1]
-                                .split(',')
-                                .map(Number);
-                            // Apply the transform to the export map context
-                            CanvasRenderingContext2D.prototype.setTransform.apply(
-                                mapContext,
-                                matrix
-                            );
-                            mapContext.drawImage(canvas, 0, 0);
-                        }
-                    }
-                );
-                if (navigator.msSaveBlob) {
-                    // link download attribuute does not work on MS browsers
-                    navigator.msSaveBlob(mapCanvas.msToBlob(), 'map.png');
+            map.on('click', function(e) {
+                if (checker > 0) {
+                    console.log('cannot');
                 } else {
-                    var link = document.getElementById('image-download');
-                    link.href = mapCanvas.toDataURL();
-                    link.click();
+                    var point = map.getCoordinateFromPixel(e.pixel)
+                    console.log(e.coordinate);
+                    $('#longitude').val(e.coordinate[0]);
+                    $('#latitude').val(e.coordinate[1]);
+
+
+                    var marker = new ol.Feature({
+                        geometry: new ol.geom.Point([e.coordinate[0], e.coordinate[1]]),
+                        type: 'hospital',
+                        name: 'test',
+                    });
+
+                    var vectorLayer = new ol.layer.Vector({
+                        title: 'REPORT',
+                        source: new ol.source.Vector({
+                            features: [marker]
+                        }),
+                        style: Style
+                    });
+                    map.addLayer(vectorLayer);
+
+
+
+                    function utmzone_from_lon(lon_deg) {
+                        //get utm-zone from longitude degrees
+                        return parseInt(((lon_deg + 180) / 6) % 60) + 1;
+                    }
+
+                    function proj4_setdef(lon_deg) {
+                        //get UTM projection definition from longitude
+                        const utm_zone = utmzone_from_lon(lon_deg);
+                        const zdef = `+proj=utm +zone=${utm_zone} +datum=WGS84 +units=m +no_defs`;
+                        return zdef;
+                    }
+
+                    // computation test
+                    let lon_input = e.coordinate[0];
+                    let lat_input = e.coordinate[1];
+                    console.log("Input (long,lat):", lon_input, lat_input);
+                    const azone = utmzone_from_lon(lon_input);
+                    console.log(`UTM zone from longitude: ${azone}`);
+                    console.log("AUTO projection definition:", proj4_setdef(lon_input));
+
+                    // define proj4_defs for easy uses
+                    // "EPSG:4326" for long/lat degrees, no projection
+                    // "EPSG:AUTO" for UTM 'auto zone' projection
+                    proj4.defs([
+                        [
+                            "EPSG:4326",
+                            "+title=WGS 84 (long/lat) +proj=longlat +ellps=WGS84 +datum=WGS84 +units=degrees"
+                        ],
+                        ["EPSG:AUTO", proj4_setdef(lon_input)]
+                    ]);
+
+                    // usage:
+                    // conversion from (long/lat) to UTM (E/N)
+                    const en_m = proj4("EPSG:4326", "EPSG:AUTO", [lon_input, lat_input]);
+                    const e4digits = en_m[0].toFixed(4); //easting
+                    const n4digits = en_m[1].toFixed(4); //northing
+                    console.log(`Zone ${azone}, (E,N) m: ${e4digits}, ${n4digits}`);
+
+
+                    $('#x_axis').val(e4digits);
+                    $('#y_axis').val(n4digits);
+
+                    // inversion from (E,N) to (long,lat)
+                    const lonlat_chk = proj4("EPSG:AUTO", "EPSG:4326", en_m);
+                    console.log("Inverse check:", lonlat_chk);
+
+                    checker = 1;
                 }
             });
 
-            $('#export-png').hide();
-            $('#show_submit').show();
-            map.renderSync();
-        });
+
+            function removeMarker() {
+                location.reload();
+            }
+
+            document.getElementById('export-png').addEventListener('click', function() {
+                map.once('rendercomplete', function() {
+                    var mapCanvas = document.createElement('canvas');
+                    var size = map.getSize();
+                    mapCanvas.width = size[0];
+                    mapCanvas.height = size[1];
+                    var mapContext = mapCanvas.getContext('2d');
+                    Array.prototype.forEach.call(
+                        document.querySelectorAll('.ol-layer canvas'),
+                        function(canvas) {
+                            if (canvas.width > 0) {
+                                var opacity = canvas.parentNode.style.opacity;
+                                mapContext.globalAlpha = opacity === '' ? 1 : Number(opacity);
+                                var transform = canvas.style.transform;
+                                // Get the transform parameters from the style's transform matrix
+                                var matrix = transform
+                                    .match(/^matrix\(([^\(]*)\)$/)[1]
+                                    .split(',')
+                                    .map(Number);
+                                // Apply the transform to the export map context
+                                CanvasRenderingContext2D.prototype.setTransform.apply(
+                                    mapContext,
+                                    matrix
+                                );
+                                mapContext.drawImage(canvas, 0, 0);
+                            }
+                        }
+                    );
+                    if (navigator.msSaveBlob) {
+                        // link download attribuute does not work on MS browsers
+                        navigator.msSaveBlob(mapCanvas.msToBlob(), 'map.png');
+                    } else {
+                        var link = document.getElementById('image-download');
+                        link.href = mapCanvas.toDataURL();
+                        link.click();
+                    }
+                });
+
+                $('#export-png').hide();
+                $('#show_submit').show();
+                map.renderSync();
+            });
+
+        }
     </script>
 
 
