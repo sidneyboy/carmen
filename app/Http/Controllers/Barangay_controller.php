@@ -521,4 +521,9 @@ class Barangay_controller extends Controller
 
         return redirect()->route('lupon_complain')->with('success', 'Success');
     }
+
+    public function disable_user($id)
+    {
+        return $id;
+    }
 }

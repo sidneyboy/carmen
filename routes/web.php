@@ -67,7 +67,9 @@ Route::post('/lupon_generate_respondent/', 'Barangay_controller@lupon_generate_r
 Route::get('/lupon_show_resident_data/{id}', 'Barangay_controller@lupon_show_resident_data')->name('lupon_show_resident_data');
 Route::post('/complain_process/', 'Barangay_controller@complain_process')->name('complain_process');
 Route::get('/lupon_change_complain_status/{id}', 'Barangay_controller@lupon_change_complain_status')->name('lupon_change_complain_status');
+Route::get('/disable_user/{id}', 'Barangay_controller@disable_user')->name('disable_user');
 
+Route::get('/enable_user/{id}', 'Barangay_controller@enable_user')->name('enable_user');
 
 
 Route::get('/about', function () {

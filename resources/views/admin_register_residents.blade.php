@@ -55,7 +55,7 @@
                         <label style="font-weight: bold;">Personal Information</label>
                         <img id="blah" src="{{ asset('carmen_images/default_image.jpg') }}" class="img img-thumbnail"
                             alt="your image" />
-                        <input accept="image/*" name="resident_image" class="form-control" type='file' id="imgInp" />
+                        <input accept="image/*" name="resident_image" class="form-control" type='file' id="imgInp" required/>
                     </div>
                 </div>
                 <div class="row">

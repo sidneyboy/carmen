@@ -70,6 +70,7 @@
                             <option value="Admin">Admin</option>
                             <option value="Monitoring">Monitoring</option>
                             <option value="Lupon">Lupon</option>
+                            <option value="Live Monitoring">Live Monitoring</option>
                         </select>
                     </div>
 
@@ -107,6 +108,7 @@
                         <th>Email</th>
                         <th>DOB / Age</th>
                         <th>User Type</th>
+                        <th>Option</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -117,14 +119,21 @@
                             <td>{{ $data->email }}</td>
                             <td>
                                 @php
-
+                                    
                                     $dateOfBirth = $data->dob;
                                     $today = date('Y-m-d');
                                     $diff = date_diff(date_create($dateOfBirth), date_create($today));
-                                    echo $data->dob ." / ". $diff->format('%y');
+                                    echo $data->dob . ' / ' . $diff->format('%y');
                                 @endphp
                             </td>
                             <td>{{ $data->user_type }}</td>
+                            <th>
+                                @if ($data->user_status == null)
+                                    <a href="{{ url('disable_user', ['id' => $data->id]) }}">Disable</a>
+                                @else
+                                    <a href="{{ url('enable_user', ['id' => $data->id]) }}">Enable</a>
+                                @endif
+                            </th>
                         </tr>
                     @endforeach
                 </tbody>
