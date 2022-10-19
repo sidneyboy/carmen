@@ -121,13 +121,13 @@
                         <span>{{ __('BRGY Complains') }}</span>
                     </a>
                 </li>
-
-                {{-- <li class="nav-item {{ Nav::isRoute('complain') }}">
-                    <a class="nav-link" href="{{ route('complain') }}">
+            @elseif ($user->user_type == 'Live Monitoring')
+                <li class="nav-item {{ Nav::isRoute('admin_register_residents') }}">
+                    <a class="nav-link" href="{{ route('admin_register_residents') }}">
                         <i class="fas fa-fw fa-user"></i>
-                        <span>{{ __('BRGY Complain') }}</span>
+                        <span>{{ __('BRGY Resident Reg') }}</span>
                     </a>
-                </li> --}}
+                </li>
             @endif
 
 
@@ -171,19 +171,6 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                {{-- <a class="dropdown-item" href="{{ route('profile') }}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    {{ __('Profile') }}
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    {{ __('Settings') }}
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    {{ __('Activity Log') }}
-                                </a> --}}
-                                {{-- <div class="dropdown-divider"></div> --}}
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     {{ __('Logout') }}
@@ -414,24 +401,28 @@
             $('#latitude').val(position.coords.latitude);
             $('#longitude').val(position.coords.longitude);
 
-            if (position.coords.longitude == null) {
-                var marker_image = $('#marker_image').val();
-                var view = new ol.View({
-                    projection: 'EPSG:4326',
-                    center: [124.6303264, 8.4994294],
-                    zoom: 18,
-                    maxZoom: 23,
-                })
+            // alert(position.coords.longitude);
 
-            } else {
-                var marker_image = $('#marker_image').val();
-                var view = new ol.View({
-                    projection: 'EPSG:4326',
-                    center: [position.coords.longitude, position.coords.latitude],
-                    zoom: 18,
-                    maxZoom: 23,
-                })
-            }
+            // if (position.coords.longitude == null) {
+            //     var marker_image = $('#marker_image').val();
+            //     var view = new ol.View({
+            //         projection: 'EPSG:4326',
+            //         center: [124.6303264, 8.4994294],
+            //         zoom: 18,
+            //         maxZoom: 23,
+            //     })
+
+            // } else {
+
+            // }
+
+            var marker_image = $('#marker_image').val();
+            var view = new ol.View({
+                projection: 'EPSG:4326',
+                center: [position.coords.longitude, position.coords.latitude],
+                zoom: 18,
+                maxZoom: 23,
+            })
 
 
             var OSM = new ol.layer.Tile({

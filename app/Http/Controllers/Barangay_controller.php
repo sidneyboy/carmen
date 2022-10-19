@@ -30,8 +30,9 @@ class Barangay_controller extends Controller
             } elseif ($user->user_type == 'Monitoring') {
                 return redirect('admin_register_residents');
             } else if ($user->user_type == 'Lupon') {
-
                 return redirect('lupon_complain');
+            } else if ($user->user_type == 'Live Monitoring') {
+                return redirect('admin_register_residents');
             }
         }
     }
