@@ -10,9 +10,9 @@
         </div>
     @endif
 
-    @if (session('status'))
+    @if (session('error'))
         <div class="alert alert-success border-left-success" role="alert">
-            {{ session('status') }}
+            {{ session('error') }}
         </div>
     @endif
 
@@ -108,7 +108,7 @@
                         <th>Email</th>
                         <th>DOB / Age</th>
                         <th>User Type</th>
-                        <th>Option</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -129,9 +129,9 @@
                             <td>{{ $data->user_type }}</td>
                             <th>
                                 @if ($data->user_status == null)
-                                    <a href="{{ url('disable_user', ['id' => $data->id]) }}">Disable</a>
+                                    <a href="{{ url('disable_user', ['id' => $data->id]) }}">Enabled</a>
                                 @else
-                                    <a href="{{ url('enable_user', ['id' => $data->id]) }}">Enable</a>
+                                    <a href="{{ url('enable_user', ['id' => $data->id]) }}">Disabled</a>
                                 @endif
                             </th>
                         </tr>

@@ -7,20 +7,32 @@ use App\Models\Residents;
 use App\Models\Complain_type;
 use App\Models\Complain;
 use DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class Barangay_controller extends Controller
 {
+    public function login()
+    {
+        Auth::logout();
+        return view('auth/login');
+    }
+
     public function admin_dashboard()
     {
         $user = User::find(auth()->user()->id);
 
-        if ($user->user_type == 'Super_user') {
-            return redirect('admin_barangay_officials_registration');
-        } elseif ($user->user_type == 'Monitoring') {
-            return redirect('admin_register_residents');
-        } else if ($user->user_type == 'Lupon') {
-            return redirect('lupon_complain');
+        if ($user->user_status == 'disabled') {
+            return redirect('/')->with('error', 'Account Deactivated');
+        } else {
+            if ($user->user_type == 'Super_user') {
+                return redirect('admin_barangay_officials_registration');
+            } elseif ($user->user_type == 'Monitoring') {
+                return redirect('admin_register_residents');
+            } else if ($user->user_type == 'Lupon') {
+
+                return redirect('lupon_complain');
+            }
         }
     }
 
@@ -524,6 +536,17 @@ class Barangay_controller extends Controller
 
     public function disable_user($id)
     {
-        return $id;
+        User::where('id', $id)
+            ->update(['user_status' => 'disabled']);
+
+        return redirect()->route('admin_barangay_officials_registration')->with('success', 'Success');
+    }
+
+    public function enable_user($id)
+    {
+        User::where('id', $id)
+            ->update(['user_status' => null]);
+
+        return redirect()->route('admin_barangay_officials_registration')->with('success', 'Success');
     }
 }

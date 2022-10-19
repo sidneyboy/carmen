@@ -414,13 +414,25 @@
             $('#latitude').val(position.coords.latitude);
             $('#longitude').val(position.coords.longitude);
 
-            var marker_image = $('#marker_image').val();
-            var view = new ol.View({
-                projection: 'EPSG:4326',
-                center: [position.coords.longitude, position.coords.latitude],
-                zoom: 18,
-                maxZoom: 23,
-            })
+            if (position.coords.longitude == null) {
+                var marker_image = $('#marker_image').val();
+                var view = new ol.View({
+                    projection: 'EPSG:4326',
+                    center: [124.6303264, 8.4994294],
+                    zoom: 18,
+                    maxZoom: 23,
+                })
+
+            } else {
+                var marker_image = $('#marker_image').val();
+                var view = new ol.View({
+                    projection: 'EPSG:4326',
+                    center: [position.coords.longitude, position.coords.latitude],
+                    zoom: 18,
+                    maxZoom: 23,
+                })
+            }
+
 
             var OSM = new ol.layer.Tile({
                 title: 'OSM',

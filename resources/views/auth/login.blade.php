@@ -31,6 +31,12 @@
                             </div>
                         @endif
 
+                        @if (session('error'))
+                            <div class="alert alert-danger border-left-danger" role="alert">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
                         <form method="POST" action="{{ route('login') }}" class="user">
                             @csrf
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
