@@ -73,6 +73,9 @@ Route::get('/disable_user/{id}', 'Barangay_controller@disable_user')->name('disa
 
 Route::get('/enable_user/{id}', 'Barangay_controller@enable_user')->name('enable_user');
 
+Route::post('/edit_location/', 'Barangay_controller@edit_location')->name('edit_location');
+
+
 
 Route::get('/about', function () {
     return view('about');

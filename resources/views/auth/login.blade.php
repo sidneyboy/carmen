@@ -13,7 +13,7 @@
                                         <img src='{{ asset('/img/carmen_logo.png') }}' class='iconDetails'>
                                     </div>
                                     <div style='margin-left:70px;margin-top:10px;'>
-                                        <h4 style="text-transform: uppercase;text-align:center;">Residency of barangay
+                                        <h4 style="text-transform: uppercase;text-align:center;">Registry of barangay
                                             inhabitants</h4>
                                     </div>
                                 </div>

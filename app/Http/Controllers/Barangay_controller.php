@@ -280,14 +280,6 @@ class Barangay_controller extends Controller
             $pwd_per_zone_total[] = 0;
         }
 
-
-        // return $resident_gender = DB::table('residents')
-        //    ->select('SUM(CASE WHEN dob < 18 THEN 1 ELSE 0 END) AS [Under 18]')
-        //    ->select('SUM(CASE WHEN dob BETWEEN 18 AND 24 THEN 1 ELSE 0 END) AS [18-24]')
-        //    ->select('SUM(CASE WHEN dob BETWEEN 25 AND 34 THEN 1 ELSE 0 END) AS [25-34]')
-        //    ->get();
-
-
         $resident_age_bracket = DB::table('residents')
             ->select('dob', DB::raw('count(*) as total'))
             ->groupBy('dob')
@@ -549,5 +541,18 @@ class Barangay_controller extends Controller
             ->update(['user_status' => null]);
 
         return redirect()->route('admin_barangay_officials_registration')->with('success', 'Success');
+    }
+
+    public function edit_location(Request $request)
+    {
+       // return $request->input();
+        Residents::where('id', $request->input('resident_id'))
+            ->update([
+                'latitude' => $request->input('longitude'),
+                'longitude' => $request->input('latitude'),
+            ]);
+
+        
+        return redirect()->route('show_resident_data', ['id' => $request->input('resident_id')])->with('success', 'Success');
     }
 }
