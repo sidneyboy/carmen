@@ -221,8 +221,12 @@
                                                             <td>{{ $complain_many_data->complain_status }}</td>
                                                             <td>{{ date('F j, Y h:i a', strtotime($complain_many_data->created_at)) }}
                                                             </td>
-                                                            <td>{{ date('F j, Y h:i a', strtotime($complain_many_data->updated_at)) }}
-                                                            </td>
+                                                            @if ($complain_many_data->complain_status == 'settled')
+                                                                <td>{{ date('F j, Y h:i a', strtotime($complain_many_data->updated_at)) }}
+                                                                </td>
+                                                            @else
+                                                                <td></td>
+                                                            @endif
 
                                                         </tr>
                                                     @endforeach
