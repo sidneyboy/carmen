@@ -30,6 +30,10 @@ class Residents extends Model
         'permanent_address',
         'current_address',
         'zone',
+        'occupation',
+        'sub_zone',
+        'relationship_to_household_head',
+        'senior_citizen',
     ];
 
     public function father_data()
@@ -41,4 +45,10 @@ class Residents extends Model
     {
         return $this->belongsTo('App\Models\Residents', 'mother');
     }
+
+    public function complain_has_one()
+    {
+        return $this->hasOne('App\Models\Complain', 'id','complain_status')->orderBy('id','desc');
+    }
+    
 }

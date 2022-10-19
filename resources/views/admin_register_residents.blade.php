@@ -143,7 +143,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Tag Father</label>
-                        <select name="father" style="width:100%;" id="father" class="js-example-basic-single form-control rounded-0" required>
+                        <select name="father" style="width:100%;height:100%;border-radius:0px;" id="father"
+                            class="js-example-basic-single form-control rounded-0" required>
                             <option value="" default>Select</option>
                             <option value="N/A">N/A</option>
                             <option value="input_father_name">Input Father Name</option>
@@ -154,16 +155,18 @@
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label>Photo</label>
+                       
                         <div id="show_father_image"></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label>Tag Mother</label>
-                        <select name="mother" style="width:100%;" id="mother" class="js-example-basic-single form-control rounded-0" required>
+                        <select name="mother" style="width:100%;height:100%;border-radius:0px;" id="mother"
+                            class="js-example-basic-single form-control rounded-0" required>
                             <option value="" default>Select</option>
                             <option value="N/A">N/A</option>
+                            <option value="input_father_name">Input Mother Name</option>
                             @foreach ($residents as $data)
                                 <option value="{{ $data->id }}">{{ $data->first_name }} {{ $data->middle_name }}
                                     {{ $data->last_name }}</option>
@@ -171,7 +174,7 @@
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label>Photo</label>
+                      
                         <div id="show_mother_image"></div>
                     </div>
                 </div>
@@ -248,6 +251,28 @@
                     <div class="col-md-12" style="display: none" id="show_trigger">
                         <label>PWD Description</label>
                         <textarea name="pwd_description" id="pwd_description" class="form-control rounded-0"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Occupation</label>
+                        <input type="text" class="form-control rounded-0" name="occupation" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Sub Zone</label>
+                        <input type="text" class="form-control rounded-0" name="sub_barangay" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Senior Citizen</label>
+                        <select name="senior_citizen" class="form-control rounded-0" required>
+                            <option value="" default>Select</option>
+                            <option value="yes">yes</option>
+                            <option value="no">no</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Relationship to household head</label>
+                        <input type="text" name="relationship_to_household_head" class="form-control rounded-0" required>
                     </div>
                 </div>
                 <div id="show_personnal_information"></div>

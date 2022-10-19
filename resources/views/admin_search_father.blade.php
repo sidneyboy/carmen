@@ -1,5 +1,8 @@
 @if ($father_data == 'input_father_name')
-          <input type="text" class="form-control rounded-0" name="specific_father_name">
+    <label for="">Father's Name</label>
+    <input type="text" class="form-control rounded-0" name="specific_father_name">
+@elseif($father_data == 'none')
+    none
 @else
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal_father">
@@ -53,12 +56,13 @@
                                     <td>{{ $father_data->last_name }}</td>
                                     <td>{{ $father_data->nickname }}</td>
                                     <td>
-                                        @php
+                                        {{ $father_data->dob }}
+                                        {{-- @php
                                             $dateOfBirth = $father_data->dob;
                                             $today = date('Y-m-d');
                                             $diff = date_diff(date_create($dateOfBirth), date_create($today));
                                             echo $diff->format('%y');
-                                        @endphp
+                                        @endphp --}}
                                     </td>
                                     <td>{{ $father_data->civil_status }}</td>
                                     <td>{{ $father_data->place_of_birth }}</td>

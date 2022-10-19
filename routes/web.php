@@ -38,6 +38,14 @@ Route::post('/admin_search_mother', 'Barangay_controller@admin_search_mother')->
 
 Route::get('/show_father_data/{father_id}', 'Barangay_controller@show_father_data')->name('show_father_data');
 
+Route::get('/show_resident_data/{id}', 'Barangay_controller@show_resident_data')->name('show_resident_data');
+
+Route::post('/resident_update_process', 'Barangay_controller@resident_update_process')->name('resident_update_process');
+Route::post('/residet_update_image_process', 'Barangay_controller@residet_update_image_process')->name('residet_update_image_process');
+
+
+
+
 
 Route::post('/admin_registration_residents_generate_number_of_childrens', 'Barangay_controller@admin_registration_residents_generate_number_of_childrens')->name('admin_registration_residents_generate_number_of_childrens');
 
@@ -52,6 +60,14 @@ Route::post('/admin_complain_type_process', 'Barangay_controller@admin_complain_
 Route::post('/complain_type_edit/', 'Barangay_controller@complain_type_edit')->name('complain_type_edit');
 
 Route::get('/complain', 'Barangay_controller@complain')->name('complain');
+
+Route::get('/lupon_complain', 'Barangay_controller@lupon_complain')->name('lupon_complain');
+Route::post('/lupon_generate_respondent/', 'Barangay_controller@lupon_generate_respondent')->name('lupon_generate_respondent');
+
+Route::get('/lupon_show_resident_data/{id}', 'Barangay_controller@lupon_show_resident_data')->name('lupon_show_resident_data');
+Route::post('/complain_process/', 'Barangay_controller@complain_process')->name('complain_process');
+Route::get('/lupon_change_complain_status/{id}', 'Barangay_controller@lupon_change_complain_status')->name('lupon_change_complain_status');
+
 
 
 Route::get('/about', function () {

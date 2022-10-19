@@ -76,25 +76,12 @@
             </a>
             @if ($user->user_type == 'Super_user')
                 <!-- Divider -->
-                {{-- <hr class="sidebar-divider my-0">
-
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item {{ Nav::isRoute('home') }}">
-                    <a class="nav-link" href="{{ route('home') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>{{ __('Dashboard') }}</span></a>
-                </li> --}}
-
-                <!-- Divider -->
                 <hr class="sidebar-divider">
 
                 <!-- Heading -->
                 <div class="sidebar-heading">
                     Functions
                 </div>
-
-                <!-- Nav Item - Profile -->
-
 
                 <li class="nav-item {{ Nav::isRoute('admin_barangay_officials_registration') }}">
                     <a class="nav-link" href="{{ route('admin_barangay_officials_registration') }}">
@@ -128,19 +115,19 @@
                     </a>
                 </li>
             @elseif($user->user_type == 'Lupon')
-                <li class="nav-item {{ Nav::isRoute('admin_add_complain_type') }}">
-                    <a class="nav-link" href="{{ route('admin_add_complain_type') }}">
+                <li class="nav-item {{ Nav::isRoute('lupon_complain') }}">
+                    <a class="nav-link" href="{{ route('lupon_complain') }}">
                         <i class="fas fa-fw fa-user"></i>
-                        <span>{{ __('BRGY Complain Type') }}</span>
+                        <span>{{ __('BRGY Complains') }}</span>
                     </a>
                 </li>
 
-                <li class="nav-item {{ Nav::isRoute('complain') }}">
+                {{-- <li class="nav-item {{ Nav::isRoute('complain') }}">
                     <a class="nav-link" href="{{ route('complain') }}">
                         <i class="fas fa-fw fa-user"></i>
                         <span>{{ __('BRGY Complain') }}</span>
                     </a>
-                </li>
+                </li> --}}
             @endif
 
 
@@ -307,6 +294,22 @@
             $('.js-example-basic-single').select2();
         });
 
+        $("#proceed").click(function() {
+            var complainant = $('#complainant').val();
+            $.post({
+                type: "POST",
+                url: "/lupon_generate_respondent",
+                data: 'complainant=' + complainant,
+                success: function(data) {
+                    console.log(data);
+                    $('#generate_respondent').html(data);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+
         $("#family_name").keyup(function() {
             $('#father_last_name').val($('#family_name').val());
         });
@@ -389,8 +392,6 @@
                 }
             });
         });
-
-
 
 
 
