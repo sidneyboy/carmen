@@ -374,6 +374,7 @@ class Barangay_controller extends Controller
             ->orWhere('respondent', $id)
             ->orderBy('id', 'desc')
             ->get();
+        
 
         return view('show_resident_data', [
             'resident_data' => $resident_data,
